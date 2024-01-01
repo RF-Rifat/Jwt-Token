@@ -79,6 +79,8 @@ async function run() {
     const bookingCollection = client.db("carDoctor").collection("bookings");
 
     app.get("/services", async (req, res) => {
+      const query = req.query.search;
+      console.log(query);
       const cursor = serviceCollection.find();
       const result = await cursor.toArray();
       res.send(result);
