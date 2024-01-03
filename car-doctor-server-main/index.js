@@ -10,7 +10,7 @@ const port = process.env.PORT || 5000;
 // middleware
 app.use(
   cors({
-    origin: ["http://localhost:5173"],
+    origin: ["http://localhost:5173", "http://localhost:5174"],
     credentials: true,
   })
 );
@@ -79,8 +79,8 @@ async function run() {
     const bookingCollection = client.db("carDoctor").collection("bookings");
 
     app.get("/services", async (req, res) => {
-      const query = req.query.search;
-      console.log(query);
+      const { title, search } = req.query;
+      console.log(title, search);
       const cursor = serviceCollection.find();
       const result = await cursor.toArray();
       res.send(result);

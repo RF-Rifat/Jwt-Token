@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ServiceCard from "./ServiceCard";
 import useAxios from "../../../hooks/useAxios";
-
+import axios from "axios";
 
 const Services = () => {
   const [services, setServices] = useState([]);
@@ -9,13 +9,17 @@ const Services = () => {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    axiosSecure.get("/services").then((res) => setServices(res.data));
-  }, [axiosSecure]);
+    axiosSecure
+      .get(`/services/title?search=${search}`)
+      .then((res) => setServices(res.data));
+  }, [axiosSecure, search]);
 
   const handleSearchData = (e) => {
     e.preventDefault();
-    
+
+    axios;
   };
+
 
   return (
     <div className="mt-4">
